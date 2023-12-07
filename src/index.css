@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap');
 /* ------------------- */
 /* Custom properties   */
 /* ------------------- */
@@ -119,6 +120,9 @@ select {
   margin-top: var(--flow-space, 1rem);
 }
 
+.flow-space-4em {
+  --flow-space: 4em;
+}
 .container {
   padding-inline: 2em;
   margin-inline: auto;

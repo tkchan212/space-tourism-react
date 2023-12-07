@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import './index.css'
+import DesignSystem from './DesignSystem'
 
 function App() {
-
+/* 
   return (
     <>
 
@@ -20,7 +21,8 @@ function App() {
     Explore
 
     </>
-  )
+  ) */
+  return <DesignSystem />
 }
 
 export default App

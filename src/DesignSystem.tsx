@@ -8,31 +8,37 @@ function DesignSystem() {
       <div className="container flow">
             <h1 className="uppercase">Design system</h1>
             
-            <section className="flow" id="colors" style="margin: 4rem 0">
+            <section className="flow" id="colors" style={{ margin: "4rem 0" }}>
                 <h2 className="numbered-title"><span>01</span> colors</h2>
                 <div className="flex">
-                    <div className="flow" style="flex-grow: 1;">
-                        <div className="bg-dark text-white ff-serif fs-500" style="padding: 3rem 1rem 1rem; border: 1px solid white">#0B0D17</div>
-                        <p><span className="text-accent">RGB</span> 11, 13, 23</p>
-                        <p><span className="text-accent">HSL</span> 230°, 35%, 7%</p>
+                  <div className="flow" style={{ flexGrow: 1 }}>
+                    <div className="bg-dark text-white ff-serif fs-500" style={{ padding: "3rem 1rem 1rem", border: "1px solid white" }}>
+                      #0B0D17
                     </div>
-                    <div className="flow" style="flex-grow: 1;">
-                        <div className="bg-accent text-dark ff-serif fs-500" style="padding: 3rem 1rem 1rem; border: 1px solid white">#D0D6F9</div>
-                        <p><span className="text-accent">RGB</span> 208, 214, 249</p>
-                        <p><span className="text-accent">HSL</span> 231°, 77%, 90%</p>
+                    <p><span className="text-accent">RGB</span> 11, 13, 23</p>
+                    <p><span className="text-accent">HSL</span> 230°, 35%, 7%</p>
+                  </div>
+                  <div className="flow" style={{ flexGrow: 1 }}>
+                    <div className="bg-accent text-dark ff-serif fs-500" style={{ padding: "3rem 1rem 1rem", border: "1px solid white" }}>
+                      #D0D6F9
                     </div>
-                    <div className="flow" style="flex-grow: 1;">
-                        <div className="bg-white text-dark ff-serif fs-500" style="padding: 3rem 1rem 1rem; border: 1px solid white;">#FFFFFF</div>
-                        <p><span className="text-accent">RGB</span> 255, 255, 255</p>
-                        <p><span className="text-accent">HSL</span> 0°, 0%, 100%</p>
+                    <p><span className="text-accent">RGB</span> 208, 214, 249</p>
+                    <p><span className="text-accent">HSL</span> 231°, 77%, 90%</p>
+                  </div>
+                  <div className="flow" style={{ flexGrow: 1 }}>
+                    <div className="bg-white text-dark ff-serif fs-500" style={{ padding: "3rem 1rem 1rem", border: "1px solid white" }}>
+                      #FFFFFF
                     </div>
+                    <p><span className="text-accent">RGB</span> 255, 255, 255</p>
+                    <p><span className="text-accent">HSL</span> 0°, 0%, 100%</p>
+                  </div>
                 </div>
             </section>
             
-            <section className="flow" id="typography"  style="margin: 4rem 0">
+            <section className="flow" id="typography"  style={{ margin: "4rem 0" }}>
                 <h2 className="numbered-title"><span>02 </span>Typography</h2>
                 <div className="flex">
-                    <div className="flow" style="flex-basis: 100%; --flow-space: 4rem;">
+                    <div className="flow flow-space-4em" style={{ flexBasis: "100%"}}>
                         <div> 
                             <p className="text-accent">Heading 1 - Bellefair Regular - 150px</p>
                             <p className="fs-900 ff-serif uppercase">Earth</p> 
@@ -56,7 +62,7 @@ function DesignSystem() {
                     
                     </div>
                     
-                    <div className="flow" style="flex-basis: 100%; --flow-space: 4rem;">
+                    <div className="flow flow-space-4em" style={{ flexBasis: "100%"}}>
                         <div> 
                             <p className="text-accent">Subheading 1 - Bellefair Regular - 28px</p>
                             <p className="fs-500 ff-serif uppercase">384,400 km</p>
@@ -92,12 +98,12 @@ function DesignSystem() {
                 </div>
                 
                 <div className="flex">
-                    <div style="margin-top: 5rem">
+                    <div style={{ marginTop: "5rem" }}>
                         /*  explore button */
                         <a href="#" className="large-button uppercase ff-serif fs-600 text-dark bg-white">Explore</a>
                     </div>
                     
-                    <div className="flow" style="margin-bottom: 50vh; --flow-space: 4rem">
+                    <div className="flow flow-space-4em" style={{ marginBottom: '50vh'}}>
                         /*  Tabs */
                         <div className="tab-list underline-indicators flex">
                             <button aria-selected="true" className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2">Moon</button>
