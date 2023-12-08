@@ -154,6 +154,14 @@ select {
   column-gap: var(--grid-column-gap, 2em);
 }
 
+.align-center {
+  align-items: center;
+}
+
+.text-center {
+ text-align: center;
+}
+
 .grid-div-1 {
   grid-column: 2;
   outline: 1px solid green;
