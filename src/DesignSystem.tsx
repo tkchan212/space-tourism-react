@@ -49,7 +49,7 @@ const Navigation: FC<NavigationProps> = ({ items, activeItem })  => (
             <ul className="primary-navigation underline-indicators flex">
                 {items.map((item, index) => (
                     <li key={index} className={item.number === activeItem ? 'active' : ''}>
-                        <a className="uppercase text-white letter-spacing-2" href="#">
+                        <a className="ff-sans-cond uppercase text-white letter-spacing-2" href="#">
                             <span>{item.number}</span>
                             {item.text}
                         </a>
@@ -213,4 +213,5 @@ function DesignSystem() {
   )
 }
 
-export default DesignSystem
+export default DesignSystem;
+export { Typography, Navigation, Tabs, Dots, ExploreButton }
