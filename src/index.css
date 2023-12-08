@@ -129,6 +129,22 @@ select {
   max-width: 80rem;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0,40em)) minmax(2em, 1fr);
+  grid-template-rows: 1fr;
+  column-gap: var(--grid-column-gap, 2em);
+}
+
+.grid-div-1 {
+  grid-column: 2;
+  outline: 1px solid green;
+}
+
+.grid-div-2 {
+  grid-column: 3;
+  outline: 1px solid antiquewhite;
+}
 .sr-only {
 position: absolute; 
 width: 1px;
@@ -200,7 +216,11 @@ border: 0;
 .large-button {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: inline-grid;/* what is the difference between inline-grid and grid? */
+  /* 
+  grid: block display on the outside
+  inline-grid: inline display on the outside, so it doesn't grow indefinitely and eat up all the space
+  */
   place-items: center;
   padding: 0 2em;
   border-radius: 50%;
