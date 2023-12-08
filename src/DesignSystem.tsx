@@ -1,5 +1,98 @@
-import { useState } from 'react'
+import { FC } from 'react';
 import './index.css'
+
+const Typography = ({ variant, children }) => {
+  let className = '';
+
+  switch (variant) {
+    case 'h1':
+      className = 'fs-900 ff-serif uppercase';
+      break;
+    case 'h2':
+      className = 'fs-800 ff-serif uppercase';
+      break;
+    case 'h3':
+      className = 'fs-700 ff-serif uppercase';
+      break;
+    case 'h4':
+      className = 'fs-600 ff-serif uppercase';
+      break;
+    case 'h5':
+      className = 'text-accent fs-500 ff-sans-cond uppercase letter-spacing-1';
+      break;
+    case 'subheading1':
+      className = 'fs-500 ff-serif uppercase';
+      break;
+    case 'subheading2':
+      className = 'fs-200 uppercase ff-sans-cond letter-spacing-3';
+      break;
+    case 'navText':
+      className = 'fs-300 uppercase ff-sans-cond letter-spacing-2';
+      break;
+    default:
+      className = '';
+  }
+
+  return <p className={className}>{children}</p>;
+}
+type NavigationItem = {
+    number: string;
+    text: string;
+}
+type NavigationProps = {
+    items: NavigationItem[];
+    activeItem: string;
+}
+const Navigation: FC<NavigationProps> = ({ items, activeItem })  => (
+    <div>
+        <nav>
+            <ul className="primary-navigation underline-indicators flex">
+                {items.map((item, index) => (
+                    <li key={index} className={item.number === activeItem ? 'active' : ''}>
+                        <a className="uppercase text-white letter-spacing-2" href="#">
+                            <span>{item.number}</span>
+                            {item.text}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    </div>
+)
+type TabProps = {
+    items: {
+        label: string,
+        value: string,
+    }[],
+    activeItem: string,
+}
+const Tabs: FC<TabProps> = ({ items, activeItem })  => (
+    <div className="tab-list underline-indicators flex">
+        {items.map(item => (
+            <button
+                key={item.value}
+                aria-selected={`${item.value === activeItem}`}
+                className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+            >
+                {item.label}
+            </button>
+        ))}
+    </div>
+)
+
+const Dots = ({ length, activeItem }) => (
+    <div className="dot-indicators flex">
+        {Array.from({ length }).map((_, index) => (
+            <button key={index} aria-selected={`${index === activeItem}`}>
+                <span className="sr-only">Slide title</span>
+            </button>
+        ))}
+    </div>
+)
+
+const ExploreButton = () => (
+    <a href="#" className="large-button uppercase ff-serif fs-600 text-dark bg-white">Explore</a>
+)
 
 function DesignSystem() {
 
@@ -41,23 +134,23 @@ function DesignSystem() {
                     <div className="flow flow-space-4em" style={{ flexBasis: "100%"}}>
                         <div> 
                             <p className="text-accent">Heading 1 - Bellefair Regular - 150px</p>
-                            <p className="fs-900 ff-serif uppercase">Earth</p> 
+                            <Typography variant="h1">Earth</Typography>
                         </div>
                         <div> 
                             <p className="text-accent">Heading 2 - Bellefair Regular - 100px</p>
-                            <p className="fs-800 ff-serif uppercase">Venus</p>
+                            <Typography variant="h2">Venus</Typography>
                         </div>
                         <div> 
                             <p className="text-accent">Heading 3 - Bellefair Regular - 56px</p>
-                            <p className="fs-700 ff-serif uppercase">Jupiter & Saturn</p>
+                            <Typography variant="h3">Jupiter & Saturn</Typography>
                         </div>
                         <div> 
                             <p className="text-accent">Heading 4 - Bellefair Regular - 32px</p>
-                            <p className="fs-600 ff-serif uppercase">Uranus, Neptune, & Pluto</p>
+                            <Typography variant="h4">Uranus, Neptune, & Pluto</Typography>
                         </div> 
                         <div> 
                             <p className="text-accent">Heading 5 - Barlow Condensed Regular - 28px - 4.75 Character Space</p>
-                            <p className="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1">So, you want to travel to space</p>
+                            <Typography variant="h5">So, you want to travel to space</Typography>
                         </div>
                     
                     </div>
@@ -65,15 +158,15 @@ function DesignSystem() {
                     <div className="flow flow-space-4em" style={{ flexBasis: "100%"}}>
                         <div> 
                             <p className="text-accent">Subheading 1 - Bellefair Regular - 28px</p>
-                            <p className="fs-500 ff-serif uppercase">384,400 km</p>
+                            <Typography variant="subheading1">384,400 km</Typography>
                         </div>
                         <div> 
                             <p className="text-accent">Subheading 2 - Barlow Condensed Regular - 14px - 2.35 Character Space</p>
-                            <p className="fs-200 uppercase ff-sans-cond letter-spacing-3">Avg. Distance</p>
+                            <Typography variant="subheading2">Avg. Distance</Typography>
                         </div>
                         <div> 
                             <p className="text-accent">Nav Text - Barlow Condensed Regular - 16px - 2.7 Character Space</p>
-                            <p className="fs-300 uppercase ff-sans-cond letter-spacing-2">Europa</p>
+                            <Typography variant="navText">Europa</Typography>
                         </div>
                         <div> 
                             <p className="text-accent">Body Text</p>
@@ -86,45 +179,34 @@ function DesignSystem() {
             <section className="flow" id="interactive-elements">
                 <h2 className="numbered-title"><span>03</span> Interactive elements</h2>
                 
-                /*  navigation */
-                <div>
-                    <nav>
-                        <ul className="primary-navigation underline-indicators flex">
-                            <li className="active"><a className="uppercase text-white letter-spacing-2" href="#"><span>01</span>Active</a></li>
-                            <li><a className="uppercase text-white letter-spacing-2" href="#"><span>02</span>Hovered</a></li>
-                            <li><a className="uppercase text-white letter-spacing-2" href="#"><span>03</span>Idle</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                {/*  navigation */}
+                <Navigation items={[
+                        { number: '01', text: 'Active' },
+                        { number: '02', text: 'Hovered' },
+                        { number: '03', text: 'Idle' },
+                    ]} activeItem="01" />
                 
                 <div className="flex">
                     <div style={{ marginTop: "5rem" }}>
-                        /*  explore button */
-                        <a href="#" className="large-button uppercase ff-serif fs-600 text-dark bg-white">Explore</a>
+                        {/*  explore button */}
+                        <ExploreButton />
                     </div>
                     
                     <div className="flow flow-space-4em" style={{ marginBottom: '50vh'}}>
-                        /*  Tabs */
-                        <div className="tab-list underline-indicators flex">
-                            <button aria-selected="true" className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2">Moon</button>
-                            <button aria-selected="false" className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2">Mars</button>
-                            <button aria-selected="false" className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2">Europa</button>
-                        </div>
+                        {/*  Tabs */}
+                        <Tabs items={[
+                            { label: 'Moon', value: 'moon' },
+                            { label: 'Mars', value: 'mars' },
+                            { label: 'Europa', value: 'europa' },
+                        ]} activeItem="moon" />
                         
-                        /*  Dots */
-                        <div className="dot-indicators flex">
-                            <button aria-selected="true"><span className="sr-only">Slide title</span></button>
-                            <button aria-selected="false"><span className="sr-only">Slide title</span></button>
-                            <button aria-selected="false"><span className="sr-only">Slide title</span></button>
-                        </div>
+                        {/*  Dots */}
+                        <Dots length={3} activeItem={0} />
                         
-                        /*  Numbers */
+                        {/*  Numbers */}
                     </div>
                 </div>
-                
             </section>
-            
-            
         </div>
 
     </>
