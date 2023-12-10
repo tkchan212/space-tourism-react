@@ -62,25 +62,20 @@ const Navigation: FC<NavigationProps> = ({ items, activeItem })  => {
                 </button>
             ) : null
         }
-        {
-            ((isMobile && openDrawer) || !isMobile) ? (
-                <nav>
-                    <ul id="primary-navigation" 
-                    className={`primary-navigation underline-indicators flex 
-                    ${ openDrawer? "active" : "" }`}>
-                        {items.map((item, index) => (
-                            <li key={index} className={item.number === activeItem ? 'active' : ''}>
-                                <a className="ff-sans-cond uppercase text-white letter-spacing-2" href="#">
-                                    <span>{item.number}</span>
-                                    {item.text}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            ) : null
-        }
-        
+        <nav>
+            <ul id="primary-navigation" 
+            className={`primary-navigation underline-indicators flex 
+            ${ openDrawer? "active" : "" }`}>
+                {items.map((item, index) => (
+                    <li key={index} className={item.number === activeItem ? 'active' : ''}>
+                        <a className="ff-sans-cond uppercase text-white letter-spacing-2" href="#">
+                            <span>{item.number}</span>
+                            {item.text}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     </div>
     )
     
