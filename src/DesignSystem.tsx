@@ -1,5 +1,8 @@
 import { FC } from 'react';
 import './index.css'
+import menuIcon from "./assets/shared/icon-hamburger.svg";
+import closeIcon from "./assets/shared/icon-close.svg";
+import { useMediaQuery, useToggle } from "usehooks-ts";
 
 const Typography = ({ variant, children }) => {
   let className = '';
@@ -43,22 +46,45 @@ type NavigationProps = {
     items: NavigationItem[];
     activeItem: string;
 }
-const Navigation: FC<NavigationProps> = ({ items, activeItem })  => (
+const Navigation: FC<NavigationProps> = ({ items, activeItem })  => {
+    const isMobile = useMediaQuery("(max-width: 35em)");
+    const [openDrawer, toggle] = useToggle(false);
+    /* const menuIcon = "./assets/shared/icon-hamburger.svg";
+    const closeIcon = "./assets/shared/icon-close.svg"; */
+
+    return(
     <div>
-        <nav>
-            <ul className="primary-navigation underline-indicators flex">
-                {items.map((item, index) => (
-                    <li key={index} className={item.number === activeItem ? 'active' : ''}>
-                        <a className="ff-sans-cond uppercase text-white letter-spacing-2" href="#">
-                            <span>{item.number}</span>
-                            {item.text}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        {
+            isMobile ? (
+                <button className="mobile-nav-toggle" onClick={toggle}
+                    style={{ backgroundImage: `url(${ openDrawer? closeIcon: menuIcon })` }} >
+                    <span className='sr-only' aria-expanded="false">Menu</span>
+                </button>
+            ) : null
+        }
+        {
+            ((isMobile && openDrawer) || !isMobile) ? (
+                <nav>
+                    <ul id="primary-navigation" 
+                    className={`primary-navigation underline-indicators flex 
+                    ${ openDrawer? "active" : "" }`}>
+                        {items.map((item, index) => (
+                            <li key={index} className={item.number === activeItem ? 'active' : ''}>
+                                <a className="ff-sans-cond uppercase text-white letter-spacing-2" href="#">
+                                    <span>{item.number}</span>
+                                    {item.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            ) : null
+        }
+        
     </div>
-)
+    )
+    
+}
 type TabProps = {
     items: {
         label: string,

@@ -42,6 +42,21 @@
       --fs-600: 2rem;
       --fs-400: 1.125rem;
   }
+
+  .grid-container {
+    text-align: left !important;
+    place-content: center;
+    grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0,30em)) minmax(2em, 1fr);
+    column-gap: var(--grid-gap, 2em);
+  }
+
+  .grid-div-1 {
+    grid-column: 2;
+  }
+  
+  .grid-div-2 {
+    grid-column: 3;
+  }
 }
 
 /* ------------------- */
@@ -149,9 +164,14 @@ select {
 
 .grid-container {
   display: grid;
-  grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0,40em)) minmax(2em, 1fr);
-  grid-template-rows: 1fr;
-  column-gap: var(--grid-column-gap, 2em);
+  text-align: center;
+  place-items: center;
+  row-gap: 10%;
+  padding-inline: 1rem;
+}
+
+.grid-container > * {
+  max-width: 50ch;
 }
 
 .align-center {
@@ -162,15 +182,6 @@ select {
  text-align: center;
 }
 
-.grid-div-1 {
-  grid-column: 2;
-  outline: 1px solid green;
-}
-
-.grid-div-2 {
-  grid-column: 3;
-  outline: 1px solid antiquewhite;
-}
 .sr-only {
 position: absolute; 
 width: 1px;
@@ -240,6 +251,7 @@ border: 0;
 /* ------------------- */
 
 .large-button {
+  font-size: 2em;
   position: relative;
   z-index: 1;
   display: inline-grid;/* what is the difference between inline-grid and grid? */
@@ -273,11 +285,34 @@ border: 0;
 }
 
 .primary-navigation {
-  --gap: 8rem;
   --underline-gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
+  background: hsl( var(--clr-white) / 0.05);
+  backdrop-filter: blur(2rem);
+}
+
+
+@media (max-width: 35em) {
+  .primary-navigation {
+    --underline-gap: 0.5rem;
+    padding: min(6em, 15vh) 2em;
+    z-index: 20;
+    position: fixed;
+    inset: 0 0 0 30%;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 300ms ease-in;
+  }
+
+  .primary-navigation.active {
+    transform: translateX(0);
+  }
+
+  .primary-navigation.underline-indicators > *.active {
+    border: 0;
+  }
 }
 
 .primary-navigation a {
@@ -288,6 +323,25 @@ border: 0;
   font-weight: 700;
   margin-right: .5em;
 }
+
+.mobile-nav-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  z-index: 21;
+  border: 0;
+  width: 2rem;
+  aspect-ratio: 1;
+  background: transparent;
+  /* background-image: url(./assets/shared/icon-close.svg); */
+  background-repeat: no-repeat;
+}
+
+/* .mobile-nav-toggle.active {
+  background-image: url(./assets/shared/icon-close.svg);
+} */
+
 
 .underline-indicators > * {
   cursor: pointer;
