@@ -39,6 +39,14 @@ const Typography = ({ variant, children }) => {
 
   return <p className={className}>{children}</p>;
 }
+
+const NumberedTitle = ({ number, title }) => (
+    <h2 className="numbered-title">
+        <span>{number}</span>
+        {title}
+    </h2>
+)
+
 type NavigationItem = {
     number: string;
     text: string;
@@ -85,13 +93,15 @@ type TabProps = {
         value: string,
     }[],
     activeItem: string,
+    onClick: (value: string) => void,
 }
-const Tabs: FC<TabProps> = ({ items, activeItem })  => (
+const Tabs: FC<TabProps> = ({ items, activeItem, onClick })  => (
     <div className="tab-list underline-indicators flex">
         {items.map(item => (
             <button
                 key={item.value}
                 aria-selected={`${item.value === activeItem}`}
+                onClick={() => onClick(item.value)}
                 className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
             >
                 {item.label}
@@ -122,7 +132,8 @@ function DesignSystem() {
             <h1 className="uppercase">Design system</h1>
             
             <section className="flow" id="colors" style={{ margin: "4rem 0" }}>
-                <h2 className="numbered-title"><span>01</span> colors</h2>
+                {/* <h2 className="numbered-title"><span>01</span> colors</h2> */}
+                <NumberedTitle number="01" title="Colors" />
                 <div className="flex">
                   <div className="flow" style={{ flexGrow: 1 }}>
                     <div className="bg-dark text-white ff-serif fs-500" style={{ padding: "3rem 1rem 1rem", border: "1px solid white" }}>
@@ -149,7 +160,8 @@ function DesignSystem() {
             </section>
             
             <section className="flow" id="typography"  style={{ margin: "4rem 0" }}>
-                <h2 className="numbered-title"><span>02 </span>Typography</h2>
+                {/* <h2 className="numbered-title"><span>02 </span>Typography</h2> */}
+                <NumberedTitle number="02" title="Typography" />
                 <div className="flex">
                     <div className="flow flow-space-4em" style={{ flexBasis: "100%"}}>
                         <div> 
@@ -197,8 +209,9 @@ function DesignSystem() {
             </section>
             
             <section className="flow" id="interactive-elements">
-                <h2 className="numbered-title"><span>03</span> Interactive elements</h2>
-                
+                {/* <h2 className="numbered-title"><span>03</span> Interactive elements</h2> */}
+                {/* Somehow, the HTML tags will have a larger separation between the number and the title.  */}
+                <NumberedTitle number="03" title="Interactive elements" />
                 {/*  navigation */}
                 <Navigation items={[
                         { number: '01', link: "1", text: 'Active' },
@@ -218,7 +231,7 @@ function DesignSystem() {
                             { label: 'Moon', value: 'moon' },
                             { label: 'Mars', value: 'mars' },
                             { label: 'Europa', value: 'europa' },
-                        ]} activeItem="moon" />
+                        ]} activeItem="moon" onClick={console.log} />
                         
                         {/*  Dots */}
                         <Dots length={3} activeItem={0} />
@@ -234,4 +247,4 @@ function DesignSystem() {
 }
 
 export default DesignSystem;
-export { Typography, Navigation, Tabs, Dots, ExploreButton }
+export { Typography, NumberedTitle, Navigation, Tabs, Dots, ExploreButton }

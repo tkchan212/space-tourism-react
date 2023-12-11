@@ -240,7 +240,7 @@ border: 0;
 }
 
 .numbered-title span {
-  margin-right: .5em;
+  margin-right: 1em;
   font-weight: 700;
   color: hsl( var(--clr-white) / .25);
 }

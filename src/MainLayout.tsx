@@ -10,17 +10,20 @@ import { Outlet, useLocation } from "react-router-dom";
 function MainLayout() {
   const isDesktop = useMediaQuery("(min-width: 45em)");
   const isMobile = useMediaQuery("(max-width: 35em)");
-  const backgroundImg = () => {
-    if (isDesktop) {
-      return bgDesktop;
-    } else if (isMobile) {
-      return bgMobile;
-    } else {
-      return bgTablet;
-    }
-  }
   const pathname = useLocation().pathname;
   const tab = pathname.split("/")[1];
+  const backgroundImg = () => {
+    if (tab === "home") {
+        if (isDesktop) {
+            return bgDesktop;
+          } else if (isMobile) {
+            return bgMobile;
+          } else {
+            return bgTablet;
+          }
+    }
+    else return null
+  }
   return (
     <div
       className={`${tab}`}

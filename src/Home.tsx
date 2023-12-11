@@ -11,11 +11,6 @@ function Home() {
   return (
     <main className="grid-container"
       style={containerStyle}
-        /* style={
-        {
-         alignContent: "end", //align items?
-         paddingBottom: "6em",
-         }} */
       >
         <div className="grid-div-1">
           <Typography variant={"h5"}>So, you want to travel to</Typography>
