@@ -1,5 +1,6 @@
 import { Suspense, lazy, ElementType } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
+import MainLayout from './MainLayout';
 
 
 // ----------------------------------------------------------------------
@@ -18,9 +19,12 @@ export default function Router() {
   return useRoutes([
     {
       path: '',
-      element: (
-        <Home />
-      ),
+      element: <MainLayout />,
+      children: [
+        { element: <Navigate to={'home'} replace />, index: true },
+        { path: 'home', element: <Home /> },
+        { path: 'destination', element: <Destination /> },
+      ]
     },
     {
       path: 'design-system',
@@ -34,3 +38,4 @@ export default function Router() {
 
 const Home = Loadable(lazy(() => import('./Home')));
 const DesignSystem = Loadable(lazy(() => import('./DesignSystem')));
+const Destination = Loadable(lazy(() => import('./Destination')));
