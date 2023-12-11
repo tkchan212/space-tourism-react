@@ -284,15 +284,58 @@ border: 0;
   transform: scale(1.5);
 }
 
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background: hsl( var(--clr-white) );
+  color: hsl( var(--clr-dark) );
+  padding: .5em 1em;
+  margin-inline: auto;
+  transform: translateY(-100%);
+  transition: transform 500ms ease-in;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
+/* ------------------- */
+/* Primary-header      */
+/* ------------------- */
+
+.primary-header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  /* frankly, I didn't understand why the margin is placed on the logo directly 
+  instead of the div containing the logo. I mean, when we used the flexbox on 
+  header and added in other flex items the margin overlaps with other flex items
+   */
+  margin: 1.5rem clamp(1.5em, 5vw, 3.5em);
+}
+
 .primary-navigation {
   --underline-gap: 2rem;
+  /* --gap: 2rem; */
+  /* better use the clamp function as it gives more flexibility on different screen sizes */
+  --gap: clamp(1.5rem, 5vw, 3.5rem);
   list-style: none;
-  padding: 0;
+  padding: 0 clamp(3rem, 7vw, 7rem);
   margin: 0;
   background: hsl( var(--clr-white) / 0.05);
   backdrop-filter: blur(2rem);
 }
 
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a > span {
+  font-weight: 700;
+  margin-right: .5em;
+}
 
 @media (max-width: 35em) {
   .primary-navigation {
@@ -315,13 +358,35 @@ border: 0;
   }
 }
 
-.primary-navigation a {
-  text-decoration: none;
+
+@media ((min-width: 35em) and (max-width: 44.9999em)) {
+  .primary-navigation  a > span {
+    display: none;
+  }
 }
 
-.primary-navigation a > span {
-  font-weight: 700;
-  margin-right: .5em;
+@media (min-width: 45em) {
+  .primary-navigation {
+    margin-block: 2rem;
+  }
+
+  .primary-header::after {
+    content: '';
+    display: block;
+    position: relative;/* when you do position relative instead of absolute, 
+    the line is treated as a member of the flex box, and then the width: 100% 
+    makes it take up the rest of width(deducting the logo and nav) 
+    instead of 100% width of the whole header. */
+    height: 1px;
+    background: hsl( var(--clr-white) / .25);
+    order: 1;
+    width: 100%;
+    margin-right: -3rem;
+  }
+  
+  .primary-header nav {
+    order: 2;
+  }
 }
 
 .mobile-nav-toggle {
