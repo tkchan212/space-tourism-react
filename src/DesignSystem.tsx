@@ -1,3 +1,4 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { FC } from 'react';
 import './index.css'
 import menuIcon from "./assets/shared/icon-hamburger.svg";
@@ -41,6 +42,7 @@ const Typography = ({ variant, children }) => {
 type NavigationItem = {
     number: string;
     text: string;
+    link: string;
 }
 type NavigationProps = {
     items: NavigationItem[];
@@ -49,16 +51,13 @@ type NavigationProps = {
 const Navigation: FC<NavigationProps> = ({ items, activeItem })  => {
     const isMobile = useMediaQuery("(max-width: 35em)");
     const [openDrawer, toggle] = useToggle(false);
-    /* const menuIcon = "./assets/shared/icon-hamburger.svg";
-    const closeIcon = "./assets/shared/icon-close.svg"; */
-
     return(
-    <div>
+    <>
         {
             isMobile ? (
                 <button className="mobile-nav-toggle" onClick={toggle}
                     style={{ backgroundImage: `url(${ openDrawer? closeIcon: menuIcon })` }} >
-                    <span className='sr-only' aria-expanded="false">Menu</span>
+                    <span className='sr-only' aria-expanded={openDrawer}>Menu</span>
                 </button>
             ) : null
         }
@@ -67,16 +66,16 @@ const Navigation: FC<NavigationProps> = ({ items, activeItem })  => {
             className={`primary-navigation underline-indicators flex 
             ${ openDrawer? "active" : "" }`}>
                 {items.map((item, index) => (
-                    <li key={index} className={item.number === activeItem ? 'active' : ''}>
-                        <a className="ff-sans-cond uppercase text-white letter-spacing-2" href="#">
-                            <span>{item.number}</span>
+                    <li key={index} className={item.link === activeItem ? 'active' : ''}>
+                        <Link className="ff-sans-cond uppercase text-white letter-spacing-2" to={item.link}>
+                            <span aria-hidden="true">{item.number}</span>
                             {item.text}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>
         </nav>
-    </div>
+        </>
     )
     
 }
@@ -202,9 +201,9 @@ function DesignSystem() {
                 
                 {/*  navigation */}
                 <Navigation items={[
-                        { number: '01', text: 'Active' },
-                        { number: '02', text: 'Hovered' },
-                        { number: '03', text: 'Idle' },
+                        { number: '01', link: "1", text: 'Active' },
+                        { number: '02', link: "2", text: 'Hovered' },
+                        { number: '03', link: "3", text: 'Idle' },
                     ]} activeItem="01" />
                 
                 <div className="flex">
