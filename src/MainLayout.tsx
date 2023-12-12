@@ -23,7 +23,7 @@ function MainLayout() {
           }
     }
     else return null
-  }
+  }/* TODO: move this to CSS */
   return (
     <div
       className={`${tab}`}

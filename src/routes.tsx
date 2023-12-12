@@ -24,6 +24,7 @@ export default function Router() {
         { element: <Navigate to={'home'} replace />, index: true },
         { path: 'home', element: <Home /> },
         { path: 'destination', element: <Destination /> },
+        { path: 'crew', element: <Crew /> },
       ]
     },
     {
@@ -39,3 +40,4 @@ export default function Router() {
 const Home = Loadable(lazy(() => import('./Home')));
 const DesignSystem = Loadable(lazy(() => import('./DesignSystem')));
 const Destination = Loadable(lazy(() => import('./Destination')));
+const Crew = Loadable(lazy(() => import('./Crew')));

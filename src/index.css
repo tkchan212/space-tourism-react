@@ -412,6 +412,10 @@ border: 0;
   background-color: hsl( var(--clr-white) / 1); 
 }
 
+.crew .role {
+  color: hsl( var(--clr-white) / 0.5); 
+}
+
 /* ----------------------------- */
 /* Layout                        */
 /* ----------------------------- */
@@ -486,5 +490,16 @@ border: 0;
   .destination-meta {
     justify-content: start;
     gap: 5rem;
+  }
+}
+
+/* crew layout */
+
+@media (min-width: 35em) {
+  .crew .grid-container {
+    padding-bottom: 0;
+  }
+  .crew .grid-container img {
+    align-self: flex-end; /* TODO does not work */
   }
 }

@@ -112,11 +112,18 @@ const Tabs: FC<TabProps> = ({ items, activeItem, onClick, style={} })  => (
     </div>
 )
 
-const Dots = ({ length, activeItem }) => (
-    <div className="dot-indicators flex">
-        {Array.from({ length }).map((_, index) => (
-            <button key={index} aria-selected={`${index === activeItem}`}>
-                <span className="sr-only">Slide title</span>
+type DotProps = {
+    items: string[],
+    activeItem: number,
+    onClick: (value: number) => void,
+    style?: object,
+}
+const Dots: FC<DotProps> = ({ items, activeItem, onClick, style={} }) => (
+    <div style={style} className="dot-indicators flex">
+        {items.map((item, index) => (
+            <button key={index} aria-selected={`${index === activeItem}`} 
+                onClick={() => onClick(index)}>
+                <span className="sr-only">{item}</span>
             </button>
         ))}
     </div>
@@ -236,7 +243,11 @@ function DesignSystem() {
                         ]} activeItem="moon" onClick={console.log} />
                         
                         {/*  Dots */}
-                        <Dots length={3} activeItem={0} />
+                        <Dots items={[
+                            'Moon',
+                            'Mars',
+                            'Europa',
+                        ]} activeItem={0} onClick={console.log}/>
                         
                         {/*  Numbers */}
                     </div>
