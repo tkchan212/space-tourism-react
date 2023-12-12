@@ -5,7 +5,7 @@ import menuIcon from "./assets/shared/icon-hamburger.svg";
 import closeIcon from "./assets/shared/icon-close.svg";
 import { useMediaQuery, useToggle } from "usehooks-ts";
 
-const Typography = ({ variant, children, _className = "" }) => {
+const Typography = ({ variant, children, _className = "", style={} }) => {
   let className = '';
 
   switch (variant) {
@@ -36,9 +36,9 @@ const Typography = ({ variant, children, _className = "" }) => {
     default:
       className = '';
   }
-  className = className + _className;
+  className = className + " " + _className;
 
-  return <p className={className}>{children}</p>;
+  return <p style={style} className={className}>{children}</p>;
 }
 
 const NumberedTitle = ({ number, title, style={} }) => (

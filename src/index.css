@@ -480,6 +480,7 @@ border: 0;
 
   .destination > .grid-container {
     justify-items: start;
+    align-content: start;
   }
 
   .destination-meta {

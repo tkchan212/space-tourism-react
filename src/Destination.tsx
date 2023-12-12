@@ -44,11 +44,11 @@ function Destination() {
             <div className="flex destination-meta">
                 <div>
                     <Typography _className="text-accent" variant={"subheading2"}>Avg. Distance</Typography>
-                    <Typography variant={"h4"}>{destinations[currIndex].distance}</Typography>
+                    <Typography style={{ fontSize: "1.5rem"}} variant={"h4"}>{destinations[currIndex].distance}</Typography>
                 </div>
                 <div>
                     <Typography _className="text-accent" variant={"subheading2"}>Est. Travel Time</Typography>
-                    <Typography variant={"h4"}>{destinations[currIndex].travel}</Typography>
+                    <Typography style={{ fontSize: "1.5rem"}} variant={"h4"}>{destinations[currIndex].travel}</Typography>
                 </div>
             </div>
             </article>
