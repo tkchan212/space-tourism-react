@@ -5,7 +5,7 @@ import menuIcon from "./assets/shared/icon-hamburger.svg";
 import closeIcon from "./assets/shared/icon-close.svg";
 import { useMediaQuery, useToggle } from "usehooks-ts";
 
-const Typography = ({ variant, children }) => {
+const Typography = ({ variant, children, _className = "" }) => {
   let className = '';
 
   switch (variant) {
@@ -36,13 +36,14 @@ const Typography = ({ variant, children }) => {
     default:
       className = '';
   }
+  className = className + _className;
 
   return <p className={className}>{children}</p>;
 }
 
-const NumberedTitle = ({ number, title }) => (
-    <h2 className="numbered-title">
-        <span>{number}</span>
+const NumberedTitle = ({ number, title, style={} }) => (
+    <h2 className="numbered-title" style={style}>
+        <span aria-hidden="true">{number}</span>
         {title}
     </h2>
 )
@@ -94,9 +95,10 @@ type TabProps = {
     }[],
     activeItem: string,
     onClick: (value: string) => void,
+    style?: object,
 }
-const Tabs: FC<TabProps> = ({ items, activeItem, onClick })  => (
-    <div className="tab-list underline-indicators flex">
+const Tabs: FC<TabProps> = ({ items, activeItem, onClick, style={} })  => (
+    <div className="tab-list underline-indicators flex" style={style}>
         {items.map(item => (
             <button
                 key={item.value}
