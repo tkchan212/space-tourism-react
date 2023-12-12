@@ -2,36 +2,57 @@ import React, { useState } from "react";
 import "./index.css";
 import { ExploreButton, NumberedTitle, Tabs, Typography } from "./DesignSystem";
 import { destinations } from "./assets/data.json";
+import { useMediaQuery } from "usehooks-ts";
 
 function Destination() {
     const [tab, setTab] = useState("moon");
     const currIndex = destinations.findIndex((dest) => dest.name.toLowerCase() === tab );
-    //const currImage = destinations[currIndex].images.png;
+    const isDesktop = useMediaQuery("(min-width: 45em)");
     return (
-    <main className="grid-container">
-        <div className="grid-div-1">
-          <NumberedTitle number="01" title="Pick Your Destination" />
-          <div>
-            <img src={destinations[currIndex].images.png} alt={destinations[currIndex].name} />
-          </div>
-        </div>
-        <div className="grid-div-2">
+    <main className="grid-container flow" style={{
+        gridTemplateAreas:
+        isDesktop ? 
+            `". title title . "
+            ". image tabs ."
+            ". image content ."`
+        :
+            `"title"
+            "image"
+            "tabs"
+            "content"`
+        }}>
+        
+            <NumberedTitle style={{ gridArea: "title" }}  number="01" title="Pick Your Destination" />
+            <div style={{ gridArea: "image", maxWidth: isDesktop? "90%" : "60%" }} >
+              <img src={destinations[currIndex].images.png} alt={destinations[currIndex].name} />
+            </div>
+        
+        
+            
             <Tabs items={[
                 { label: 'Moon', value: 'moon' },
                 { label: 'Mars', value: 'mars' },
                 { label: 'Europa', value: 'europa' },
                 { label: 'Titan', value: 'titan' },
-            ]} 
+            ]}
+            style={{ gridArea: "tabs" }} 
             onClick={setTab} activeItem={tab} />
+            
+            <article style={{ gridArea: "content" }} >
             <Typography variant={"h2"}>{destinations[currIndex].name}</Typography>
-            <Typography variant={"body"}>{destinations[currIndex].description}</Typography>
-            <div className="flex">
-            <Typography variant={"subheading2"}>Avg. Distance</Typography>
-            <Typography variant={"h4"}>{destinations[currIndex].distance}</Typography>
-            <Typography variant={"subheading2"}>Est. Travel Time</Typography>
-            <Typography variant={"h4"}>{destinations[currIndex].travel}</Typography>
+            <Typography _className="text-accent" variant={"body"}>{destinations[currIndex].description}</Typography>
+            <div className="flex destination-meta">
+                <div>
+                    <Typography _className="text-accent" variant={"subheading2"}>Avg. Distance</Typography>
+                    <Typography variant={"h4"}>{destinations[currIndex].distance}</Typography>
+                </div>
+                <div>
+                    <Typography _className="text-accent" variant={"subheading2"}>Est. Travel Time</Typography>
+                    <Typography variant={"h4"}>{destinations[currIndex].travel}</Typography>
+                </div>
             </div>
-        </div>
+            </article>
+        
     </main>
     );
 }

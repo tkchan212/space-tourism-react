@@ -35,31 +35,6 @@
   }
 }
 
-@media (min-width: 45em) {
-  :root {
-      /* font-sizes */
-      --fs-800: 6.25rem;
-      --fs-700: 3.5rem;
-      --fs-600: 2rem;
-      --fs-500: 1.75rem;
-      --fs-400: 1.125rem;
-  }
-
-  .grid-container {
-    text-align: left !important;
-    place-content: center;
-    grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0,30em)) minmax(2em, 1fr);
-    column-gap: var(--grid-gap, 2em);
-  }
-
-  .grid-div-1 {
-    grid-column: 2;
-  }
-  
-  .grid-div-2 {
-    grid-column: 3;
-  }
-}
 
 /* ------------------- */
 /* Reset               */
@@ -162,18 +137,6 @@ select {
   padding-inline: 2em;
   margin-inline: auto;
   max-width: 80rem;
-}
-
-.grid-container {
-  display: grid;
-  text-align: center;
-  place-items: center;
-  row-gap: 10%;
-  padding-inline: 1rem;
-}
-
-.grid-container > * {
-  max-width: 50ch;
 }
 
 .align-center {
@@ -447,4 +410,80 @@ border: 0;
 
 .dot-indicators > [aria-selected="true"] {
   background-color: hsl( var(--clr-white) / 1); 
+}
+
+/* ----------------------------- */
+/* Layout                        */
+/* ----------------------------- */
+
+.grid-container {
+  display: grid;
+  text-align: center;
+  place-items: center;
+  padding-inline: 1rem;
+  padding-bottom: 3rem;
+}
+
+.grid-container > * {
+  max-width: 50ch;
+}
+
+/* destination layout */
+.destination .flow {
+  --flow-space: 2rem;
+}
+.destination-meta {
+  flex-direction: column;
+  border-top: 1px solid hsl( var(--clr-white) / .25);
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+
+@media (min-width: 35em) {
+  .numbered-title {
+    justify-self: start;
+    margin-top: 2rem;
+  }
+  .destination-meta {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+}
+
+
+@media (min-width: 45em) {
+  :root {
+      /* font-sizes */
+      --fs-800: 6.25rem;
+      --fs-700: 3.5rem;
+      --fs-600: 2rem;
+      --fs-500: 1.75rem;
+      --fs-400: 1.125rem;
+  }
+
+  .grid-container {
+    text-align: left !important;
+    place-content: center;
+    grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0,30em)) minmax(2em, 1fr);
+    column-gap: var(--grid-gap, 2em);
+  }
+
+  .grid-div-1 {
+    grid-column: 2;
+  }
+  
+  .grid-div-2 {
+    grid-column: 3;
+  }
+
+  .destination > .grid-container {
+    justify-items: start;
+  }
+
+  .destination-meta {
+    justify-content: start;
+    gap: 5rem;
+  }
 }
