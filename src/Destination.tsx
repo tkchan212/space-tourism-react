@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
-import { ExploreButton, NumberedTitle, Tabs, Typography } from "./DesignSystem";
+import { NumberedTitle, Tabs, Typography } from "./DesignSystem";
 import { destinations } from "./assets/data.json";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -8,6 +8,45 @@ function Destination() {
     const [tab, setTab] = useState("moon");
     const currIndex = destinations.findIndex((dest) => dest.name.toLowerCase() === tab );
     const isDesktop = useMediaQuery("(min-width: 45em)");
+    let focus = 0;
+
+    const onClick = (value: string) => {
+        setTab(value);
+        focus = destinations.findIndex((dest) => dest.name.toLowerCase() === value );
+    }
+
+    
+    useEffect(() => {
+        const tabs = document.querySelectorAll(".tab-list > button");
+        const keyboardFocus = (e: any ) => {
+            const key = e.key;
+
+            if (key === "ArrowRight") {
+                if (focus === destinations.length - 1) {
+                    focus = 0;
+                } else {
+                    focus++;
+                }
+            }
+            if (key === "ArrowLeft") {
+                if (focus === 0) {
+                    focus = destinations.length - 1;
+                } else {
+                    focus--;
+                }
+            }
+            (tabs[focus] as any).focus();
+        };
+        tabs.forEach((tab) => {
+            tab.addEventListener("keydown", keyboardFocus)
+        });
+        return () => {
+            tabs.forEach((tab) => {
+                tab.removeEventListener("keydown", keyboardFocus)
+            });
+        }
+    }, []);
+
     return (
     <main className="grid-container flow" style={{
         gridTemplateAreas:
@@ -38,7 +77,8 @@ function Destination() {
                 { label: 'Titan', value: 'titan' },
             ]}
             style={{ gridArea: "tabs" }} 
-            onClick={setTab} activeItem={tab} />
+            onClick={onClick} //onKeyDown={keyboardNavigation} 
+            activeItem={tab} />
             
             <article className="flow" style={{ gridArea: "content" }} >
             <Typography variant={"h2"}>{destinations[currIndex].name}</Typography>

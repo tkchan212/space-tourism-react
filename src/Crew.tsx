@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import { Dots, NumberedTitle, Tabs, Typography } from "./DesignSystem";
 import { crew } from "./assets/data.json";
@@ -33,6 +33,44 @@ function Destination() {
             )
         }
     }
+    let focus = 0;
+
+    const onClick = (value: number) => {
+        setTab(value);
+        focus = value;
+    }
+
+    
+    useEffect(() => {
+        const tabs = document.querySelectorAll(".dot-indicators > button");
+        const keyboardFocus = (e: any ) => {
+            const key = e.key;
+
+            if (key === "ArrowRight") {
+                if (focus === crew.length - 1) {
+                    focus = 0;
+                } else {
+                    focus++;
+                }
+            }
+            if (key === "ArrowLeft") {
+                if (focus === 0) {
+                    focus = crew.length - 1;
+                } else {
+                    focus--;
+                }
+            }
+            (tabs[focus] as any).focus();
+        };
+        tabs.forEach((tab) => {
+            tab.addEventListener("keydown", keyboardFocus)
+        });
+        return () => {
+            tabs.forEach((tab) => {
+                tab.removeEventListener("keydown", keyboardFocus)
+            });
+        }
+    }, []);
     
      
     return (
@@ -45,7 +83,7 @@ function Destination() {
                 <img src={crew[tab].images.png} alt={crew[tab].name}  />
             </picture>
             <Dots items={crew.map((crewMember) => crewMember.role)} style={{ gridArea: "tabs" }}
-            onClick={setTab} activeItem={tab} />
+            onClick={onClick} activeItem={tab} />
             
             <article className="flow" style={{ gridArea: "content" }} >
                 <div className="flow" >

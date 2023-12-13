@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { FC } from 'react';
+import { FC, KeyboardEvent } from 'react';
 import './index.css'
 import menuIcon from "./assets/shared/icon-hamburger.svg";
 import closeIcon from "./assets/shared/icon-close.svg";
@@ -95,15 +95,19 @@ type TabProps = {
     }[],
     activeItem: string,
     onClick: (value: string) => void,
+    onKeyDown?: (e: KeyboardEvent) => void,
     style?: object,
 }
-const Tabs: FC<TabProps> = ({ items, activeItem, onClick, style={} })  => (
+
+
+const Tabs: FC<TabProps> = ({ items, activeItem, onClick, onKeyDown=(e) => {}, style={} })  => (
     <div className="tab-list underline-indicators flex" style={style}>
         {items.map(item => (
             <button
                 key={item.value}
                 aria-selected={`${item.value === activeItem}`}
                 onClick={() => onClick(item.value)}
+                onKeyDown={onKeyDown}
                 className="uppercase ff-sans-cond text-accent letter-spacing-2"
             >
                 {item.label}
@@ -240,7 +244,7 @@ function DesignSystem() {
                             { label: 'Moon', value: 'moon' },
                             { label: 'Mars', value: 'mars' },
                             { label: 'Europa', value: 'europa' },
-                        ]} activeItem="moon" onClick={console.log} />
+                        ]} activeItem="moon" onClick={console.log} onKeyDown={console.log} />
                         
                         {/*  Dots */}
                         <Dots items={[
