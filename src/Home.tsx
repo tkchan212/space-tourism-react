@@ -1,6 +1,7 @@
 import "./index.css";
 import { ExploreButton, Typography } from "./DesignSystem";
 import { useMediaQuery } from "usehooks-ts";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const isDesktop = useMediaQuery("(min-width: 45em)");
@@ -8,6 +9,11 @@ function Home() {
     alignContent: "end", //align items?
     paddingBottom: "6em",
     }: {}
+  const navigate = useNavigate();
+  const onClick = (e) => {
+    e.preventDefault();
+    navigate("/destination");
+  }
   return (
     <main className="grid-container"
       style={containerStyle}
@@ -23,7 +29,7 @@ function Home() {
           </p>
         </div>
         <div className="grid-div-2">
-          <ExploreButton />
+          <ExploreButton onClick={onClick} />
         </div>
     </main>
   );

@@ -25,6 +25,7 @@ export default function Router() {
         { path: 'home', element: <Home /> },
         { path: 'destination', element: <Destination /> },
         { path: 'crew', element: <Crew /> },
+        { path: 'technology', element: <Technology /> },
       ]
     },
     {
@@ -41,3 +42,4 @@ const Home = Loadable(lazy(() => import('./Home')));
 const DesignSystem = Loadable(lazy(() => import('./DesignSystem')));
 const Destination = Loadable(lazy(() => import('./Destination')));
 const Crew = Loadable(lazy(() => import('./Crew')));
+const Technology = Loadable(lazy(() => import('./Technology')));

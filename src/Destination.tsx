@@ -64,7 +64,7 @@ function Destination() {
             <NumberedTitle style={{ gridArea: "title" }}  number="01" title="Pick Your Destination" />
             
             
-            <picture style={{ gridArea: "image", maxWidth: isDesktop? "90%" : "60%" }}>
+            <picture style={{ gridArea: "image", alignSelf: "start", maxWidth: isDesktop? "90%" : "60%" }}>
                 <source srcSet={destinations[currIndex].images.webp} type="image/webp" />
                 <img src={destinations[currIndex].images.png} alt={destinations[currIndex].name} />
             </picture>

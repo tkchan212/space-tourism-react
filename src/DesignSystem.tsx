@@ -133,8 +133,8 @@ const Dots: FC<DotProps> = ({ items, activeItem, onClick, style={} }) => (
     </div>
 )
 
-const ExploreButton = () => (
-    <a href="#" className="large-button uppercase ff-serif fs-600 text-dark bg-white">Explore</a>
+const ExploreButton = ({onClick}) => (
+    <a onClick={onClick} className="large-button uppercase ff-serif fs-600 text-dark bg-white">Explore</a>
 )
 
 function DesignSystem() {
@@ -235,7 +235,7 @@ function DesignSystem() {
                 <div className="flex">
                     <div style={{ marginTop: "5rem" }}>
                         {/*  explore button */}
-                        <ExploreButton />
+                        <ExploreButton onClick={() => console.log('hi')}/>
                     </div>
                     
                     <div className="flow flow-space-4em" style={{ marginBottom: '50vh'}}>

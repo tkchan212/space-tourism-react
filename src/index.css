@@ -508,15 +508,44 @@ border: 0;
 }
 
 @media (min-width: 45em) {
-  .crew .dot-indicators {
-    justify-self: start;
+  .crew .grid-container {
+    justify-items: start;
+    grid-template-columns: minmax(2em, 1fr) minmax(0,37em) minmax(0,23em) minmax(2em, 1fr);
   }
 
-  .crew img {
-    align-self: flex-end; /* TODO does not work */
+  .crew picture {
+    grid-column: span 2;
+    margin-right: 3rem;
+    /* I think adding a bit of margin on the right makes the image centered a bit without sacrificing the size.  */
   }
 }
 
+.technology .grid-container {
+  padding-inline: 0;
+}
+
+.technology .grid-container .numbered-title,
+.technology .grid-container p {
+  padding-inline: 2rem;
+}
+/* technology layout */
+@media (min-width: 45em) {
+  .technology .grid-container {
+    grid-template-columns: minmax(2em, 1fr) minmax(0,8em) minmax(0,32em) minmax(0,20em) minmax(2em, 1fr);
+  }
+
+  .technology picture {
+    grid-column: span 3;
+    
+  }
+}
+
+@media (min-width: 80em) {
+  .technology .grid-container {
+    grid-template-columns: minmax(2em, 1fr) minmax(0,6em) minmax(0,50em) minmax(0,20em) minmax(2em, 1fr);
+  }
+
+}
 /* ------------------- */
 /* Background-images   */
 /* ------------------- */

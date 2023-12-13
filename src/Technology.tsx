@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "./index.css";
 import { Dots, NumberedTitle, Tabs, Typography } from "./DesignSystem";
-import { crew } from "./assets/data.json";
+import { technology } from "./assets/data.json";
 import { useMediaQuery } from "usehooks-ts";
 
-function Destination() {
+function Technology() {
     const [tab, setTab] = useState(0);
     const isDesktop = useMediaQuery("(min-width: 45em)");
     const isMobile = useMediaQuery("(max-width: 35em)");
@@ -19,17 +19,16 @@ function Destination() {
         }
         else if (isDesktop) {
             return (
-                `". title title . "
-                ". content image ."
-                ". tabs image ."`
+                `". title title title . "
+                ". tabs content image image"`
             )
         }
         else {
             return (
                 `"title"
-                "content"
+                "image"
                 "tabs"
-                "image"`
+                "content"`
             )
         }
     }
@@ -47,7 +46,7 @@ function Destination() {
             const key = e.key;
 
             if (key === "ArrowRight") {
-                if (focus === crew.length - 1) {
+                if (focus === technology.length - 1) {
                     focus = 0;
                 } else {
                     focus++;
@@ -55,7 +54,7 @@ function Destination() {
             }
             if (key === "ArrowLeft") {
                 if (focus === 0) {
-                    focus = crew.length - 1;
+                    focus = technology.length - 1;
                 } else {
                     focus--;
                 }
@@ -76,25 +75,24 @@ function Destination() {
     return (
     <main className="grid-container flow" style={{gridTemplateAreas: gridTemplateAreas()}}>
         
-            <NumberedTitle style={{ gridArea: "title" }}  number="02" title="Meet Your Crew" />
+            <NumberedTitle style={{ gridArea: "title" }}  number="03" title="Space Launch 101" />
             
-            <picture style={{ gridArea: "image", maxWidth: isDesktop? "100%" : "60%" }}>
-                <source srcSet={crew[tab].images.webp} type="image/webp" />
-                <img style={{paddingLeft: "-3em", }} src={crew[tab].images.png} alt={crew[tab].name}  />
+            <picture style={{ gridArea: "image", width:  "100%" }}>
+                <img src={ isDesktop ? technology[tab].images.portrait : technology[tab].images.landscape} alt={technology[tab].name}  />
             </picture>
-            <Dots items={crew.map((crewMember) => crewMember.role)} style={{ gridArea: "tabs" }}
+            <Dots items={technology.map((tech) => tech.name)} style={{ gridArea: "tabs", flexDirection: "column" }}
             onClick={onClick} activeItem={tab} />
             
             <article className="flow" style={{ gridArea: "content" }} >
                 <div className="flow" >
-                    <Typography _className="role" variant={"h4"}>{crew[tab].role}</Typography>
-                    <Typography variant={"h3"}>{crew[tab].name}</Typography>
+                    <p className="text-accent">THE TERMINOLOGY…</p>
+                    <Typography variant={"h3"}>{technology[tab].name}</Typography>
                 </div>
-                <Typography _className="text-accent" variant={"body"}>{crew[tab].bio}</Typography>
+                <Typography _className="text-accent" variant={"body"}>{technology[tab].description}</Typography>
             </article>
         
     </main>
     );
 }
 
-export default Destination;
+export default Technology;
