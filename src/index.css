@@ -378,6 +378,7 @@ border: 0;
   padding: var(--underline-gap, 1rem) 0;
   border: 0;
   border-bottom: .2rem solid hsl( var(--clr-white) / 0 );
+  background-color: transparent;
 }
 
 .underline-indicators > *:hover,
@@ -428,7 +429,7 @@ border: 0;
   padding-bottom: 3rem;
 }
 
-.grid-container > * {
+.grid-container p {
   max-width: 50ch;
 }
 
@@ -495,11 +496,26 @@ border: 0;
 
 /* crew layout */
 
+.crew article .flow {
+  --flow-space: 0.75rem;
+}
+
 @media (min-width: 35em) {
   .crew .grid-container {
     padding-bottom: 0;
   }
-  .crew .grid-container img {
+}
+
+@media (min-width: 45em) {
+  .crew .dot-indicators {
+    justify-self: start;
+  }
+
+  .crew img {
     align-self: flex-end; /* TODO does not work */
   }
 }
+
+/* ------------------- */
+/* Background-images   */
+/* ------------------- */

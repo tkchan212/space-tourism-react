@@ -23,10 +23,12 @@ function Destination() {
         }}>
         
             <NumberedTitle style={{ gridArea: "title" }}  number="01" title="Pick Your Destination" />
-            <div style={{ gridArea: "image", maxWidth: isDesktop? "90%" : "60%" }} >
-              <img src={destinations[currIndex].images.png} alt={destinations[currIndex].name} />
-            </div>
-        
+            
+            
+            <picture style={{ gridArea: "image", maxWidth: isDesktop? "90%" : "60%" }}>
+                <source srcSet={destinations[currIndex].images.webp} type="image/webp" />
+                <img src={destinations[currIndex].images.png} alt={destinations[currIndex].name} />
+            </picture>
         
             
             <Tabs items={[
@@ -38,7 +40,7 @@ function Destination() {
             style={{ gridArea: "tabs" }} 
             onClick={setTab} activeItem={tab} />
             
-            <article style={{ gridArea: "content" }} >
+            <article className="flow" style={{ gridArea: "content" }} >
             <Typography variant={"h2"}>{destinations[currIndex].name}</Typography>
             <Typography _className="text-accent" variant={"body"}>{destinations[currIndex].description}</Typography>
             <div className="flex destination-meta">

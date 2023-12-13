@@ -39,19 +39,20 @@ function Destination() {
     <main className="grid-container flow" style={{gridTemplateAreas: gridTemplateAreas()}}>
         
             <NumberedTitle style={{ gridArea: "title" }}  number="02" title="Meet Your Crew" />
-            <div style={{ gridArea: "image", maxWidth: isDesktop? "90%" : "60%" }} >
-              <img src={crew[tab].images.png} alt={crew[tab].name} />
-            </div>
-        
-        
             
+            <picture style={{ gridArea: "image", maxWidth: isDesktop? "85%" : "60%" }}>
+                <source srcSet={crew[tab].images.webp} type="image/webp" />
+                <img src={crew[tab].images.png} alt={crew[tab].name}  />
+            </picture>
             <Dots items={crew.map((crewMember) => crewMember.role)} style={{ gridArea: "tabs" }}
             onClick={setTab} activeItem={tab} />
             
-            <article style={{ gridArea: "content" }} >
-            <Typography _className="role" variant={"h4"}>{crew[tab].role}</Typography>
-            <Typography variant={"h2"}>{crew[tab].name}</Typography>
-            <Typography _className="text-accent" variant={"body"}>{crew[tab].bio}</Typography>
+            <article className="flow" style={{ gridArea: "content" }} >
+                <div className="flow" >
+                    <Typography _className="role" variant={"h4"}>{crew[tab].role}</Typography>
+                    <Typography variant={"h3"}>{crew[tab].name}</Typography>
+                </div>
+                <Typography _className="text-accent" variant={"body"}>{crew[tab].bio}</Typography>
             </article>
         
     </main>

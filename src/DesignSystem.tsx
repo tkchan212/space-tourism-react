@@ -104,7 +104,7 @@ const Tabs: FC<TabProps> = ({ items, activeItem, onClick, style={} })  => (
                 key={item.value}
                 aria-selected={`${item.value === activeItem}`}
                 onClick={() => onClick(item.value)}
-                className="uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+                className="uppercase ff-sans-cond text-accent letter-spacing-2"
             >
                 {item.label}
             </button>
