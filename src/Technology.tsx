@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./index.css";
-import { Dots, NumberedTitle, Tabs, Typography } from "./DesignSystem";
+import { Numbers, NumberedTitle, Tabs, Typography } from "./DesignSystem";
 import { technology } from "./assets/data.json";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -80,7 +80,7 @@ function Technology() {
             <picture style={{ gridArea: "image", width:  "100%" }}>
                 <img src={ isDesktop ? technology[tab].images.portrait : technology[tab].images.landscape} alt={technology[tab].name}  />
             </picture>
-            <Dots items={technology.map((tech) => tech.name)} style={{ gridArea: "tabs", flexDirection: "column" }}
+            <Numbers items={technology.map((tech) => tech.name)} style={{ gridArea: "tabs" }}
             onClick={onClick} activeItem={tab} />
             
             <article className="flow" style={{ gridArea: "content" }} >

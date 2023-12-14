@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { FC, KeyboardEvent } from 'react';
+import { FC, KeyboardEvent, useEffect, useRef } from 'react';
 import './index.css'
 import menuIcon from "./assets/shared/icon-hamburger.svg";
 import closeIcon from "./assets/shared/icon-close.svg";
@@ -59,7 +59,20 @@ type NavigationProps = {
 }
 const Navigation: FC<NavigationProps> = ({ items, activeItem })  => {
     const isMobile = useMediaQuery("(max-width: 35em)");
-    const [openDrawer, toggle] = useToggle(false);
+    const [openDrawer, toggle, setOpen] = useToggle(false);
+    const menuRef = useRef();
+
+
+    useEffect(() => {
+        const closeDrawer = (e) => {
+            if (menuRef.current && !(menuRef.current as any).contains(e.target)) {
+                setOpen(false)
+            }
+        }
+        document.addEventListener("mousedown", closeDrawer);
+        return () => document.removeEventListener("mousedown", closeDrawer);
+    }, []);
+
     return(
     <>
         {
@@ -70,7 +83,7 @@ const Navigation: FC<NavigationProps> = ({ items, activeItem })  => {
                 </button>
             ) : null
         }
-        <nav>
+        <nav ref={menuRef}>
             <ul id="primary-navigation" 
             className={`primary-navigation underline-indicators flex 
             ${ openDrawer? "active" : "" }`}>
@@ -127,6 +140,20 @@ const Dots: FC<DotProps> = ({ items, activeItem, onClick, style={} }) => (
         {items.map((item, index) => (
             <button key={index} aria-selected={`${index === activeItem}`} 
                 onClick={() => onClick(index)}>
+                <span className="sr-only">{item}</span>
+            </button>
+        ))}
+    </div>
+)
+
+
+const Numbers: FC<DotProps> = ({ items, activeItem, onClick, style={} }) => (
+    <div style={style} className="number-indicators flex">
+        {items.map((item, index) => (
+            <button key={index} aria-selected={`${index === activeItem}`}  
+                className='bg-dark text-white fs-600 ff-serif'
+                onClick={() => onClick(index)}>
+                <span aria-hidden="true">{index+1}</span>
                 <span className="sr-only">{item}</span>
             </button>
         ))}
@@ -254,6 +281,11 @@ function DesignSystem() {
                         ]} activeItem={0} onClick={console.log}/>
                         
                         {/*  Numbers */}
+                        <Numbers items={[
+                            'Moon',
+                            'Mars',
+                            'Europa',
+                        ]} activeItem={0} onClick={console.log}/>
                     </div>
                 </div>
             </section>
@@ -264,4 +296,4 @@ function DesignSystem() {
 }
 
 export default DesignSystem;
-export { Typography, NumberedTitle, Navigation, Tabs, Dots, ExploreButton }
+export { Typography, NumberedTitle, Navigation, Tabs, Dots, Numbers, ExploreButton }
