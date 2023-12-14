@@ -88,7 +88,7 @@ function Technology() {
                     <p className="text-accent">THE TERMINOLOGY…</p>
                     <Typography variant={"h3"}>{technology[tab].name}</Typography>
                 </div>
-                <Typography _className="text-accent" variant={"body"}>{technology[tab].description}</Typography>
+                <Typography _className="text-accent text-max-width" variant={"body"}>{technology[tab].description}</Typography>
             </article>
         
     </main>

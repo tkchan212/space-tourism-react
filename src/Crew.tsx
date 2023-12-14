@@ -90,7 +90,7 @@ function Destination() {
                     <Typography _className="role" variant={"h4"}>{crew[tab].role}</Typography>
                     <Typography variant={"h3"}>{crew[tab].name}</Typography>
                 </div>
-                <Typography _className="text-accent" variant={"body"}>{crew[tab].bio}</Typography>
+                <Typography _className="text-accent text-max-width" variant={"body"}>{crew[tab].bio}</Typography>
             </article>
         
     </main>

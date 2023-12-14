@@ -77,12 +77,12 @@ function Destination() {
                 { label: 'Titan', value: 'titan' },
             ]}
             style={{ gridArea: "tabs" }} 
-            onClick={onClick} //onKeyDown={keyboardNavigation} 
+            onClick={onClick}
             activeItem={tab} />
             
             <article className="flow" style={{ gridArea: "content" }} >
             <Typography variant={"h2"}>{destinations[currIndex].name}</Typography>
-            <Typography _className="text-accent" variant={"body"}>{destinations[currIndex].description}</Typography>
+            <Typography _className="text-accent text-max-width" variant={"body"}>{destinations[currIndex].description}</Typography>
             <div className="flex destination-meta">
                 <div>
                     <Typography _className="text-accent" variant={"subheading2"}>Avg. Distance</Typography>

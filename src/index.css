@@ -12,8 +12,8 @@
   /* font-sizes */
   --fs-900: clamp(4rem, 8vw + 1rem, 9.375rem);
   --fs-800: 3.5rem;
-  --fs-700: 1.5rem;
-  --fs-600: 1rem;
+  --fs-700: 2rem;
+  --fs-600: 1.5rem;
   --fs-500: 1rem;
   --fs-400: 0.9375rem;
   --fs-300: 1rem;
@@ -157,6 +157,10 @@ overflow: hidden;
 clip: rect(0, 0, 0, 0);
 white-space: nowrap; /* added line */
 border: 0;
+}
+
+.text-max-width {
+  max-width: 50ch;
 }
 
 /* colors */
@@ -417,7 +421,7 @@ border: 0;
 
 .number-indicators > button {
   cursor: pointer;
-  padding-inline: 2rem;
+  padding-inline: 1.25rem;
   aspect-ratio: 1;
   border: 1px solid hsl( var(--clr-white) / .25);
   border-radius: 50%;
@@ -442,6 +446,10 @@ border: 0;
     display: inline-flex;/* If I don't add this the buttons become really big when they are vertical. */
     flex-direction: column;
   }
+
+  .number-indicators > button {
+    padding-inline: 2rem;
+  }
 }
 
 /* ----------------------------- */
@@ -456,14 +464,13 @@ border: 0;
   padding-bottom: 3rem;
 }
 
-.grid-container p {
-  max-width: 50ch;
+
+.destination .flow, .crew .flow , .technology .flow {
+  --flow-space: 2rem;
 }
 
 /* destination layout */
-.destination .flow {
-  --flow-space: 2rem;
-}
+
 .destination-meta {
   flex-direction: column;
   border-top: 1px solid hsl( var(--clr-white) / .25);
@@ -475,7 +482,7 @@ border: 0;
 @media (min-width: 35em) {
   .numbered-title {
     justify-self: start;
-    margin-top: 2rem;
+    margin-block: 2rem;
   }
   .destination-meta {
     flex-direction: row;
@@ -546,6 +553,8 @@ border: 0;
   }
 }
 
+/* technology layout */
+
 .technology .grid-container {
   padding-inline: 0;
 }
@@ -554,7 +563,10 @@ border: 0;
 .technology .grid-container p {
   padding-inline: 2rem;
 }
-/* technology layout */
+
+.technology article .flow {
+  --flow-space: 0.75rem;
+}
 @media (min-width: 45em) {
   .technology .grid-container {
     grid-template-columns: minmax(2em, 1.5fr) minmax(0,8em) minmax(0,32em) minmax(0,20em) minmax(2em, 1fr);
