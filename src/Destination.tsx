@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 import { NumberedTitle, Tabs, Typography } from "./DesignSystem";
 import { destinations } from "./assets/data.json";

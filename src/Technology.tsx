@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./index.css";
-import { Numbers, NumberedTitle, Tabs, Typography } from "./DesignSystem";
+import { Numbers, NumberedTitle, Typography } from "./DesignSystem";
 import { technology } from "./assets/data.json";
 import { useMediaQuery } from "usehooks-ts";
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./index.css";
-import { Dots, NumberedTitle, Tabs, Typography } from "./DesignSystem";
+import { Dots, NumberedTitle, Typography } from "./DesignSystem";
 import { crew } from "./assets/data.json";
 import { useMediaQuery } from "usehooks-ts";
 

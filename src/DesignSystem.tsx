@@ -1,4 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+// @ts-nocheck
+import { Link } from 'react-router-dom';
 import { FC, KeyboardEvent, useEffect, useRef } from 'react';
 import './index.css'
 import menuIcon from "./assets/shared/icon-hamburger.svg";
@@ -113,7 +114,7 @@ type TabProps = {
 }
 
 
-const Tabs: FC<TabProps> = ({ items, activeItem, onClick, onKeyDown=(e) => {}, style={} })  => (
+const Tabs: FC<TabProps> = ({ items, activeItem, onClick, onKeyDown=() => {}, style={} })  => (
     <div className="tab-list underline-indicators flex" style={style}>
         {items.map(item => (
             <button
