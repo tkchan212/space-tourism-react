@@ -1,30 +1,73 @@
-# React + TypeScript + Vite
+# Space Tourism Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Space Tourism React, a mock website for a company that offers out-of-this-world experiences!
 
-Currently, two official plugins are available:
+This project is a demonstration of my skills in building a responsive and accessible web application using React. The website showcases a fictional space tourism company, featuring a modern design and user-friendly interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 💻 Live Demo
 
-## Expanding the ESLint configuration
+[Visit the live demo](https://space-tourism-react-kappa.vercel.app/) to explore the website and experience the thrill of space tourism!
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Key Features
 
-- Configure the top-level `parserOptions` property like this:
+- Responsive layout that adapts to mobile, tablet and desktop viewports
+- Interactive navigation with keyboard accessibility
+- Smooth transitions and animations
+- Component-based architecture using React
+- Type-safe development with TypeScript
+- CSS custom properties for consistent theming
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 💻 Technical Skills Demonstrated
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### React & TypeScript
+- Component composition and reusability
+- Type-safe props and state management
+- Event handling with TypeScript
+
+### CSS & Responsive Design
+- Mobile-first responsive design using media queries
+- CSS Grid and Flexbox for complex layouts
+- CSS custom properties for maintainable theming
+- BEM-like naming conventions
+- Fluid typography with `clamp()`
+
+### Accessibility
+- Semantic HTML structure
+- Keyboard navigation support
+- Screen reader friendly content
+- Skip to content link
+
+### Performance
+- Image optimization with WebP format support
+- Conditional image loading based on viewport
+- Efficient CSS using utility classes
+- Responsive images using `picture` element
+
+## 🛠️ Built With
+
+- React
+- TypeScript
+- CSS3
+- Vite
+
+To run the project locally, follow these steps:
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+
+
+## 📱 Responsive Design
+
+The website features three distinct layouts: mobile, tablet, desktop. Each layout is optimized for its viewport with appropriate spacing, typography, and component arrangements.
+
+## 🎨 Design System
+
+Implements a comprehensive design system including:
+- Typography scale
+- Color system
+- Component variants
+- Spacing units
+- Interactive states
+- Utility classes
+
